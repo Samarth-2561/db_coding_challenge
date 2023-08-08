@@ -1,10 +1,10 @@
 package com.db.request;
 
 public class AddSecurityRequest {
-	private String issuer;
-	private Long coupon;
-	private String type;
-	private Long faceValue;
+	public String issuer;
+	public Long coupon;
+	public String type;
+	public Long faceValue;
 	public String maturityDate;
 	
 	public String getIssuer() {
