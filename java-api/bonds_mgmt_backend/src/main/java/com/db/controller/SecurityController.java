@@ -17,6 +17,7 @@ import com.db.service.SecurityService;
 
 
 @RestController
+@RequestMapping("/api")
 public class SecurityController {
 	
 	@Autowired
