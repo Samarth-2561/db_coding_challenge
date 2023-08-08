@@ -1,5 +1,10 @@
 package com.db.controller;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.db.model.User;
 import com.db.model.UserData;
 import com.db.repository.UserRepository;
+import com.db.request.AddTradeRequest;
 import com.db.request.LoginRequest;
 import com.db.request.SignupRequest;
 import com.db.response.JwtResponse;
@@ -41,7 +47,9 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
-
+	@PersistenceContext
+	EntityManager em;
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateuser(@RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
@@ -76,5 +84,23 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("user registered successfully!"));
+	}
+	
+	@Transactional
+	@PostMapping("/add_security")	
+	public ResponseEntity<?> addSecurity(@RequestBody AddTradeRequest addTradeRequest, @RequestAttribute UserData user_data) {	
+		if(!user_data.getRole().equalsIgnoreCase("admin")) {
+			return ResponseEntity.status(401).body(new MessageResponse("Error: username not authorized for this request!"));
+		}
+		System.out.println(addTradeRequest.getMaurityDate());
+		em.joinTransaction();
+		int q = em.createNamedQuery("Security.addSecurity")
+				.setParameter(1, addTradeRequest.getIssuer())
+				.setParameter(2, addTradeRequest.getMaurityDate()) 
+				.setParameter(3, addTradeRequest.getCoupon())
+				.setParameter(4, addTradeRequest.getType())
+				.setParameter(5, addTradeRequest.getFaceValue())
+				.setParameter(6, addTradeRequest.getStatus()).executeUpdate();
+		return ResponseEntity.ok(new MessageResponse("successfully added security!"));
 	}
 }
