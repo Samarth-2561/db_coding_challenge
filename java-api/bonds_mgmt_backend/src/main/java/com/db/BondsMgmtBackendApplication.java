@@ -11,5 +11,4 @@ public class BondsMgmtBackendApplication {
 		
 		System.out.println("Application started!");
 	}
-
 }
