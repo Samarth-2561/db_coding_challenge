@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.db.model.BookUsers;
 import com.db.model.Trade;
 import com.db.model.UserData;
+import com.db.response.AllTradeOfUserResponse;
 import com.db.response.MessageResponse;
 import com.db.response.TradeResponse;
 
@@ -35,17 +36,12 @@ public class TradeController {
 	 * get all trade related to users book id
 	 */
 	@GetMapping("/getTradeByUserID")
-	public MessageResponse getTradeByUserId(@RequestAttribute UserData user_data) {
+	public ResponseEntity<AllTradeOfUserResponse> getTradeByUserId(@RequestAttribute UserData user_data) {
 		
 		Query q = em.createNamedQuery("Trade.getTradeByUserID");    
 		q.setParameter(1, user_data.getId()); 
 		List<Trade> trades = q.getResultList();
-        for (Trade i : trades) {
- 
-            // Print all elements of ArrayList
-            System.out.println(i.toString());
-        }		
-        return new MessageResponse("Hello!");
+        return ResponseEntity.ok(new AllTradeOfUserResponse(trades));
 	}
 	
 	@GetMapping("/{id}")
@@ -55,9 +51,7 @@ public class TradeController {
 		q.setParameter(1, id); 
 		List<Trade> trades = q.getResultList();
 		Trade trade = trades.get(0);		
-		
-		System.out.println(trade.getPrice());
-		
+			
         return ResponseEntity
 				.ok(new TradeResponse(trade.getPrice(), trade.getQuantity(), trade.getSettlement_date(), 
 				trade.getStatus(), trade.getTrade_date(), trade.getTrade_type(), 
