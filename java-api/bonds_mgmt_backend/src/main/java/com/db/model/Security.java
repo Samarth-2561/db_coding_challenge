@@ -12,6 +12,7 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "security")
 @NamedNativeQueries({
 	@NamedNativeQuery(
 	    name = "Security.addSecurity",
