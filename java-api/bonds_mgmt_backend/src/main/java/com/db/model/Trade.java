@@ -43,6 +43,13 @@ import javax.persistence.Table;
             name = "Trade.getTradeByID",
             query =
                 "SELECT * FROM trade where id = ?;", resultClass = Trade.class
+    ),
+	
+    @NamedNativeQuery(
+        name = "Trade.addTrade",
+        query =
+            "INSERT INTO trade (book_id, counter_party_id, security_id, quantity, status, price, trade_type, trade_date, settlement_date) \n"
+            + "VALUES (?,?,?,?,?,?,?,?,?);", resultClass = Trade.class
     )
 })
 
@@ -50,7 +57,7 @@ import javax.persistence.Table;
 public class Trade {
 	
 
-	private @Id @GeneratedValue Long id;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	@OneToOne
     private Books book;
 	@OneToOne
