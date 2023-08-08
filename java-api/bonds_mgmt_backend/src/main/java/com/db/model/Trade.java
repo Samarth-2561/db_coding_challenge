@@ -27,6 +27,12 @@ import javax.persistence.Table;
         name = "Trade.innerJoinEverything",
         query =
             "SELECT * FROM trade inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id inner join security on security.id = trade.security_id inner join books on books.id = trade.book_id;", resultClass = Trade.class
+    ),
+    @NamedNativeQuery(
+        name = "Trade.addTrade",
+        query =
+            "INSERT INTO trade (book_id, counter_party_id, security_id, quantity, status, price, trade_type, trade_date, settlement_date) \n"
+            + "VALUES (?,?,?,?,?,?,?,?,?);", resultClass = Trade.class
     )
 })
 public class Trade {

@@ -24,6 +24,7 @@ import com.db.model.User;
 import com.db.model.UserData;
 import com.db.repository.UserRepository;
 import com.db.request.AddSecurityRequest;
+import com.db.request.AddTradeRequest;
 import com.db.request.LoginRequest;
 import com.db.request.SignupRequest;
 import com.db.response.JwtResponse;
@@ -88,37 +89,44 @@ public class AuthController {
 	
 	@Transactional
 	@PostMapping("/add_security")	
-	public ResponseEntity<?> addSecurity(@RequestBody AddSecurityRequest addTradeRequest, @RequestAttribute UserData user_data) {	
+	public ResponseEntity<?> addSecurity(@RequestBody AddSecurityRequest addSecurityRequest, @RequestAttribute UserData user_data) {	
 		if(!user_data.getRole().equalsIgnoreCase("admin")) {
 			return ResponseEntity.status(401).body(new MessageResponse("Error: username not authorized for this request!"));
 		}
-		System.out.println(addTradeRequest.getMaurityDate());
+		System.out.println(addSecurityRequest.getMaurityDate());
 		em.joinTransaction();
 		int q = em.createNamedQuery("Security.addSecurity")
-				.setParameter(1, addTradeRequest.getIssuer())
-				.setParameter(2, addTradeRequest.getMaurityDate()) 
-				.setParameter(3, addTradeRequest.getCoupon())
-				.setParameter(4, addTradeRequest.getType())
-				.setParameter(5, addTradeRequest.getFaceValue())
-				.setParameter(6, addTradeRequest.getStatus()).executeUpdate();
+				.setParameter(1, addSecurityRequest.getIssuer())
+				.setParameter(2, addSecurityRequest.getMaurityDate()) 
+				.setParameter(3, addSecurityRequest.getCoupon())
+				.setParameter(4, addSecurityRequest.getType())
+				.setParameter(5, addSecurityRequest.getFaceValue())
+				.setParameter(6, addSecurityRequest.getStatus()).executeUpdate();
 		return ResponseEntity.ok(new MessageResponse("successfully added security!"));
 	}
 	
 	@Transactional
 	@PostMapping("/add_trades")	
-	public ResponseEntity<?> addTrades(@RequestBody AddSecurityRequest addTradeRequest, @RequestAttribute UserData user_data) {	
+	public ResponseEntity<?> addTrades(@RequestBody AddTradeRequest addTradeRequest, @RequestAttribute UserData user_data) {	
 		if(!user_data.getRole().equalsIgnoreCase("admin")) {
 			return ResponseEntity.status(401).body(new MessageResponse("Error: username not authorized for this request!"));
 		}
-		System.out.println(addTradeRequest.getMaurityDate());
+		System.out.println(addTradeRequest.getBookId() + " "
+				           + addTradeRequest.getCounterPartyId() + " " + addTradeRequest.getSecurityId() + " " + addTradeRequest.getQuantity() + " "
+				           + addTradeRequest.getStatus() + " " + addTradeRequest.getPrice() + " " + addTradeRequest.getTradeType() + " "
+				           + addTradeRequest.getTradeDate() + " " + addTradeRequest.getSettlementDate());
 		em.joinTransaction();
-		int q = em.createNamedQuery("Security.addSecurity")
-				.setParameter(1, addTradeRequest.getIssuer())
-				.setParameter(2, addTradeRequest.getMaurityDate()) 
-				.setParameter(3, addTradeRequest.getCoupon())
-				.setParameter(4, addTradeRequest.getType())
-				.setParameter(5, addTradeRequest.getFaceValue())
-				.setParameter(6, addTradeRequest.getStatus()).executeUpdate();
+		int q = em.createNamedQuery("Trade.addTrade")
+				.setParameter(1, addTradeRequest.getBookId())
+				.setParameter(2, addTradeRequest.getCounterPartyId()) 
+				.setParameter(3, addTradeRequest.getSecurityId())
+				.setParameter(4, addTradeRequest.getQuantity())
+				.setParameter(5, addTradeRequest.getStatus())
+				.setParameter(6, addTradeRequest.getPrice())
+				.setParameter(7, addTradeRequest.getTradeType())
+				.setParameter(8, addTradeRequest.getTradeDate())
+				.setParameter(9, addTradeRequest.getSettlementDate())
+				.executeUpdate();
 		return ResponseEntity.ok(new MessageResponse("successfully added trades!"));
 	}
 }
