@@ -4,15 +4,25 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 
 
-//mark class as an Entity   
-@Entity  
-//defining class name as Table name  
-@Table(name="Security")
+@Entity
+@Table(name = "security")
+@NamedNativeQueries({
+	@NamedNativeQuery(
+	    name = "Security.addSecurity",
+	    query =
+	        "INSERT INTO security (issuer, maturity_date, coupon, type, face_value, status) VALUES (?, ?, ?, ?, ?, ?);", 
+	    resultClass = Security.class
+	)
+})
 public class Security   
 {  
 
@@ -32,22 +42,22 @@ public class Security
 @Column(name="id") 
 private long  id;  
 //defining name as column name  
-@Column(name="Issuer") 
+@Column(name="issuer") 
 private String Issuer;  
 //defining age as column name  
-@Column(name="Maturity_Date")  
+@Column(name="maturity_date")  
 private Date Maturity_Date;  
 //defining email as column name  
-@Column(name="Coupon")  
+@Column(name="coupon")  
 private int Coupon; 
 
-@Column(name="Type")  
+@Column(name="type")  
 private String Type; 
 
-@Column(name="Face_Value")  
+@Column(name="face_value")  
 private int Face_Value;
 
-@Column(name="Status")
+@Column(name="status")
 private String Status;
 
 
