@@ -3,7 +3,6 @@
  */
 package com.db.model;
 
-import java.security.Security;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
