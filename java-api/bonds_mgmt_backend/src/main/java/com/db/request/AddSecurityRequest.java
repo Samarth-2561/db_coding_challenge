@@ -1,6 +1,6 @@
 package com.db.request;
 
-public class AddTradeRequest {
+public class AddSecurityRequest {
 	private String issuer;
 	private Long coupon;
 	private String type;

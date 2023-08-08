@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.db.model.User;
 import com.db.model.UserData;
 import com.db.repository.UserRepository;
-import com.db.request.AddTradeRequest;
+import com.db.request.AddSecurityRequest;
 import com.db.request.LoginRequest;
 import com.db.request.SignupRequest;
 import com.db.response.JwtResponse;
@@ -88,7 +88,7 @@ public class AuthController {
 	
 	@Transactional
 	@PostMapping("/add_security")	
-	public ResponseEntity<?> addSecurity(@RequestBody AddTradeRequest addTradeRequest, @RequestAttribute UserData user_data) {	
+	public ResponseEntity<?> addSecurity(@RequestBody AddSecurityRequest addTradeRequest, @RequestAttribute UserData user_data) {	
 		if(!user_data.getRole().equalsIgnoreCase("admin")) {
 			return ResponseEntity.status(401).body(new MessageResponse("Error: username not authorized for this request!"));
 		}
@@ -102,5 +102,23 @@ public class AuthController {
 				.setParameter(5, addTradeRequest.getFaceValue())
 				.setParameter(6, addTradeRequest.getStatus()).executeUpdate();
 		return ResponseEntity.ok(new MessageResponse("successfully added security!"));
+	}
+	
+	@Transactional
+	@PostMapping("/add_trades")	
+	public ResponseEntity<?> addTrades(@RequestBody AddSecurityRequest addTradeRequest, @RequestAttribute UserData user_data) {	
+		if(!user_data.getRole().equalsIgnoreCase("admin")) {
+			return ResponseEntity.status(401).body(new MessageResponse("Error: username not authorized for this request!"));
+		}
+		System.out.println(addTradeRequest.getMaurityDate());
+		em.joinTransaction();
+		int q = em.createNamedQuery("Security.addSecurity")
+				.setParameter(1, addTradeRequest.getIssuer())
+				.setParameter(2, addTradeRequest.getMaurityDate()) 
+				.setParameter(3, addTradeRequest.getCoupon())
+				.setParameter(4, addTradeRequest.getType())
+				.setParameter(5, addTradeRequest.getFaceValue())
+				.setParameter(6, addTradeRequest.getStatus()).executeUpdate();
+		return ResponseEntity.ok(new MessageResponse("successfully added trades!"));
 	}
 }
