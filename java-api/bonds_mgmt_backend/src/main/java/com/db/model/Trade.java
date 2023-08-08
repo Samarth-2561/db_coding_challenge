@@ -57,7 +57,7 @@ import javax.persistence.Table;
 public class Trade {
 	
 
-	private @Id @GeneratedValue Long id;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	@OneToOne
     private Books book;
 	@OneToOne
