@@ -23,10 +23,20 @@ public class Books {
 	
 	private @Id @GeneratedValue Long id;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	private String book_name;
 	
 	public String getBookName() {
 		return book_name;
 	}
+	
+	
 
 }
