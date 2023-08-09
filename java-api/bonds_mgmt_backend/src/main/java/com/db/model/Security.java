@@ -5,14 +5,24 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 
-
-//mark class as an Entity   
-@Entity  
-//defining class name as Table name  
 @Table(name="Security")
+//mark class as an Entity   
+@Entity
+@NamedNativeQueries({
+
+    @NamedNativeQuery(
+        name = "Security.innerJoinEverything",
+        query =
+            "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id;", resultClass = Security.class
+    )
+})
+//defining class name as Table name  
+
 public class Security   
 {  
 
@@ -97,8 +107,6 @@ public void setFace_Value(int value)
 {  
 this.Face_Value = value;  
 }  
-
-
 
 public String getStatus()   
 {  
