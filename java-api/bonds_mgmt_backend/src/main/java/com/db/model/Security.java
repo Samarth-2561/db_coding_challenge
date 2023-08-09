@@ -13,16 +13,19 @@ import javax.persistence.Table;
 
 
 
+@Table(name="Security")
+//mark class as an Entity   
 @Entity
-@Table(name = "security")
 @NamedNativeQueries({
-	@NamedNativeQuery(
-	    name = "Security.addSecurity",
-	    query =
-	        "INSERT INTO security (issuer, maturity_date, coupon, type, face_value, status) VALUES (?, ?, ?, ?, ?, ?);", 
-	    resultClass = Security.class
-	)
+
+  @NamedNativeQuery(
+      name = "Security.innerJoinEverything",
+      query =
+          "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id;", resultClass = Security.class
+  )
 })
+//defining class name as Table name  
+
 public class Security   
 {  
 
@@ -107,8 +110,6 @@ public void setFace_Value(int value)
 {  
 this.Face_Value = value;  
 }  
-
-
 
 public String getStatus()   
 {  
