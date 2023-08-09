@@ -117,6 +117,20 @@ export default function Trades() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const convertDate = (dateString) => {
+    const today = new Date(dateString);
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + mm;
+
+    const formattedToday = dd + "/" + mm + "/" + yyyy;
+    return formattedToday;
+  };
+
   return rows.length > 0 ? (
     <Paper id="traTable" style={{ display: "none" }}>
       <TableContainer component={Paper}>
@@ -162,10 +176,10 @@ export default function Trades() {
                   {row.price}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.trade_date}
+                  {convertDate(row.trade_date)}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.settlement_date}
+                  {convertDate(row.settlement_date)}
                 </TableCell>
               </TableRow>
             ))}
