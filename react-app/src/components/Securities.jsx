@@ -93,10 +93,13 @@ export default function Securities() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows, setRows] = useState([]);
 
-  useEffect(async () => {
-    const data = await fetchSecurites();
-    console.log(data, typeof(data)); // data not coming
-    setRows(data ? data : []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchSecurites();
+      console.log(data, typeof(data)); // data not coming
+      setRows(data ? data : []);
+    }
+    fetchData();
   }, []);
 
   const emptyRows =
