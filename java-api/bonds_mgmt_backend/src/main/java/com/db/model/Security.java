@@ -21,7 +21,7 @@ import javax.persistence.Table;
   @NamedNativeQuery(
       name = "Security.innerJoinEverything",
       query =
-          "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id;", resultClass = Security.class
+          "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id WHERE users.id = ?;", resultClass = Security.class
   )
 })
 //defining class name as Table name  
