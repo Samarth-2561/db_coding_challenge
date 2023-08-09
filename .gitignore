@@ -12,7 +12,7 @@ dist/
 **/target/**
 react-app/src/node/**
 **/package-lock.json
-
+node_modules
 # Distribution / packaging
 dist/
 downloads/
