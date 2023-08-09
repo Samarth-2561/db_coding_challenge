@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import com.db.model.Security;
 import com.db.model.Trade;
 import com.db.model.UserData;
 import com.db.response.MessageResponse;
+import com.db.response.SecurityResponse;
 import com.db.service.SecurityService;
 
 @CrossOrigin(origins = "*", maxAge = 4800)
@@ -35,8 +37,11 @@ public class SecurityController {
 	private SecurityService securityService;
 	
 	@GetMapping(path = "/security")  
-	private List<Security> getAllSecurity(){
-	return securityService.getAllSecurity();  
+	private ResponseEntity<?> getAllSecurity(@RequestAttribute UserData user_data){
+		Query q = em.createNamedQuery("Security.innerJoinEverything"); 
+		q.setParameter(1, user_data.getId());
+		List<Security> security_data = q.getResultList();
+		return ResponseEntity.ok(new SecurityResponse(security_data));
 	}  
 	
 //	@GetMapping(path="/securityforUserId/{id}")
@@ -51,16 +56,8 @@ public class SecurityController {
 	} 
 	
 	@GetMapping("/getAllSecurityInformation")
-	public MessageResponse getSecurityInformation(@RequestAttribute UserData user_data) {
-		Query q = em.createNamedQuery("Security.innerJoinEverything"); 
-		List<Security> bookUsers = q.getResultList();
-		System.out.println(" "+bookUsers.size());
-        for (Security i : bookUsers) {
- 
-            // Print all elements of ArrayList
-            System.out.println(i.getId()+i.getIssuer()+i.getMaturity_Date()+i.getCoupon()+i.getFace_Value()+i.getStatus());
-        }
-        return new MessageResponse("Congratulations! These are books "+bookUsers.size());
+	public List<Security> getSecurityInformation() {
+		return securityService.getAllSecurity();  
 	}
 	
 	@DeleteMapping("/security/{id}")  
