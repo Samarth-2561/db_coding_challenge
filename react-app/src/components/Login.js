@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
+import bgImage from "../images/bg_image.jpg"
 
 import axios from "../api/axios";
 const LOGIN_URL = "https://bondtracker.up.railway.app/api/auth/signin";
@@ -66,7 +67,10 @@ const Login = () => {
   };
 
   return (
-    <section>
+    <div  style={{ border: '1px solid red', width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', 
+    backgroundSize: 'cover',       
+    backgroundPosition: 'center' }}>
+      <section className="section-login">
       <p
         ref={errRef}
         className={errMsg ? "errmsg" : "offscreen"}
@@ -98,6 +102,8 @@ const Login = () => {
         <button>Sign In</button>
       </form>
     </section>
+    </div>
+    
   );
 };
 

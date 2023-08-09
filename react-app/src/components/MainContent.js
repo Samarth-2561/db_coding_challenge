@@ -24,7 +24,7 @@ const MainContent = () => {
                                     <div class="card-body">
                                         <h5 class="text-muted">Total Profit</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$12099</h1>
+                                            <h1 class="mb-1">₹120k</h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                             <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -38,7 +38,7 @@ const MainContent = () => {
                                     <div class="card-body">
                                         <h5 class="text-muted">Affiliate Profit</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$12099</h1>
+                                            <h1 class="mb-1">₹114k</h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                             <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -66,7 +66,7 @@ const MainContent = () => {
                                     <div class="card-body">
                                         <h5 class="text-muted">Avg. Revenue</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$2800</h1>
+                                            <h1 class="mb-1">₹280k</h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
                                             <span>-2.00%</span>
