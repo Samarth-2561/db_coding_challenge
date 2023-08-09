@@ -4,10 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
+
 
 
 @Table(name="Security")
@@ -15,11 +18,11 @@ import javax.persistence.Table;
 @Entity
 @NamedNativeQueries({
 
-    @NamedNativeQuery(
-        name = "Security.innerJoinEverything",
-        query =
-            "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id;", resultClass = Security.class
-    )
+  @NamedNativeQuery(
+      name = "Security.innerJoinEverything",
+      query =
+          "SELECT security.id, issuer, maturity_date, coupon, security.type, face_value ,security.status FROM security inner join trade on security.id = trade.security_id inner join bookusers on trade.book_id = bookusers.book_id inner join users on users.id = bookusers.user_id;", resultClass = Security.class
+  )
 })
 //defining class name as Table name  
 
@@ -42,22 +45,22 @@ public class Security
 @Column(name="id") 
 private long  id;  
 //defining name as column name  
-@Column(name="Issuer") 
+@Column(name="issuer") 
 private String Issuer;  
 //defining age as column name  
-@Column(name="Maturity_Date")  
+@Column(name="maturity_date")  
 private Date Maturity_Date;  
 //defining email as column name  
-@Column(name="Coupon")  
+@Column(name="coupon")  
 private int Coupon; 
 
-@Column(name="Type")  
+@Column(name="type")  
 private String Type; 
 
-@Column(name="Face_Value")  
+@Column(name="face_value")  
 private int Face_Value;
 
-@Column(name="Status")
+@Column(name="status")
 private String Status;
 
 

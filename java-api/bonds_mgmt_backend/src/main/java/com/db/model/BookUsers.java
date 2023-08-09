@@ -23,6 +23,7 @@ import javax.persistence.Table;
  */
 
 @Entity
+@Table(name = "bookusers")
 @NamedNativeQueries({
 
     @NamedNativeQuery(
