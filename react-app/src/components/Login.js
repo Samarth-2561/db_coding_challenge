@@ -67,7 +67,7 @@ const Login = () => {
   };
 
   return (
-    <div  style={{ border: '1px solid red', width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', 
+    <div  style={{  width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', 
     backgroundSize: 'cover',       
     backgroundPosition: 'center' }}>
       <section className="section-login">
