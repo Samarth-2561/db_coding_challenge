@@ -46,7 +46,7 @@ public class BondSchedular {
 			sendMail(i[0],i[1], i[2] , i[4] ,i[5]);
 		}
 		em.joinTransaction();
-		em.createNativeQuery("UPDATE security SET status = 'post-mature' WHERE id in (SELECT id FROM security WHERE status= 'not-mature' AND current_date() > maturity_date);").executeUpdate();
+		em.createNativeQuery("UPDATE security t2, (SELECT id FROM security WHERE status= 'not-mature' AND current_date() > maturity_date) t1 SET status = 'post-mature' WHERE t1.id = t2.id;").executeUpdate();
 		
 	}
 	
