@@ -95,10 +95,10 @@ export default function Securities() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const {data} = await fetchSecurites();
-      console.log(data, typeof(data)); // data not coming
+      const { data } = await fetchSecurites();
+      console.log(data, typeof data); // data not coming
       setRows(data ? data : []);
-    }
+    };
     fetchData();
   }, []);
 
@@ -114,8 +114,21 @@ export default function Securities() {
     setPage(0);
   };
 
+  const convertDate = (dateString) => {
+    const today = new Date(dateString);
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + mm;
+
+    const formattedToday = dd + "/" + mm + "/" + yyyy;
+    return formattedToday;
+  };
+
   return (
-    <Paper id='secTable'>
+    <Paper id="secTable">
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
           <TableHead>
@@ -156,7 +169,7 @@ export default function Securities() {
                   {row.issuer}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.maturity_Date}
+                  {convertDate(row.maturity_Date)}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {row.coupon}
@@ -168,7 +181,20 @@ export default function Securities() {
                   {row.face_Value}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>{row.status} <div className={`indicatorm ${row.status === 'post-mature' ? 'red' : 'green'}`} /></div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    {row.status}{" "}
+                    <div
+                      className={`indicatorm ${
+                        row.status === "post-mature" ? "red" : "green"
+                      }`}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

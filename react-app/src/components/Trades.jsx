@@ -97,12 +97,12 @@ export default function Trades() {
   useEffect(() => {
     const fetchData = async () => {
       // getting the data but rows.slice error
-      const {data} = await getAllTradesOfUser();
+      const { data } = await getAllTradesOfUser();
       console.log(data, typeof data);
       setRows(data ? data : []);
       // const res1 = await getTradeByIdOfUser(2);
       // console.log("id" , res1);
-    }
+    };
     fetchData();
   }, []);
 
@@ -133,7 +133,7 @@ export default function Trades() {
                 Status
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                Buy/Sell
+                Quantity
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 Trade Date
@@ -145,10 +145,7 @@ export default function Trades() {
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? rows.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : rows
             ).map((row) => (
               <TableRow key={row.name}>
