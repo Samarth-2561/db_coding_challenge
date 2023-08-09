@@ -1,6 +1,7 @@
 package com.db.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,9 @@ import java.io.File;
 
 @Service
 public class EmailSenderService {
+	@Value("${spring.mail.username}")
+	private String email;
+	
 	@Autowired
     private JavaMailSender mailSender;
 
@@ -21,7 +25,7 @@ public class EmailSenderService {
                                 String body
     ) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("bondtracker598@gmail.com");
+        message.setFrom(email);
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);

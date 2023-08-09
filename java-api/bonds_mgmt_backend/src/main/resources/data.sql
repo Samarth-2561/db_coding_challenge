@@ -1,5 +1,5 @@
-INSERT INTO users (id, username, role, email, password) VALUES (1, 'admin', 'admin','admin@gmail.com','$2a$10$rYc3NTOoXkuItSrEI9navekqajlJ.IS7ZfScu5xYLP..uwvcICvPi');
-INSERT INTO users (id, username, role, email, password) VALUES (2, 'user', 'user','user@gmail.com','$2a$10$6Oxx8CREBurd.JZ0KK8mW.hcmZsaCjyC7h/xD4v1z2s1Z5PqeXiMW');
+INSERT INTO users (id, username, role, email, password) VALUES (1, 'admin', 'admin','samarthnaphade@gmail.com','$2a$10$rYc3NTOoXkuItSrEI9navekqajlJ.IS7ZfScu5xYLP..uwvcICvPi');
+INSERT INTO users (id, username, role, email, password) VALUES (2, 'user', 'user','thebotop62@gmail.com','$2a$10$6Oxx8CREBurd.JZ0KK8mW.hcmZsaCjyC7h/xD4v1z2s1Z5PqeXiMW');
 
 INSERT INTO books (id, book_name) VALUES (1,'test 1');
 INSERT INTO books (id, book_name) VALUES (2,'test 2');
