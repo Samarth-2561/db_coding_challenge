@@ -94,13 +94,16 @@ export default function Trades() {
 
   const [rows, setRows] = useState([]);
 
-  useEffect(async () => {
-    // getting the data but rows.slice error
-    const {data} = await getAllTradesOfUser();
-    console.log(data, typeof data);
-    setRows(data ? data : []);
-    // const res1 = await getTradeByIdOfUser(2);
-    // console.log("id" , res1);
+  useEffect(() => {
+    const fetchData = async () => {
+      // getting the data but rows.slice error
+      const {data} = await getAllTradesOfUser();
+      console.log(data, typeof data);
+      setRows(data ? data : []);
+      // const res1 = await getTradeByIdOfUser(2);
+      // console.log("id" , res1);
+    }
+    fetchData();
   }, []);
 
   const emptyRows =
