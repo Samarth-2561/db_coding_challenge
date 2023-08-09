@@ -7,7 +7,7 @@
 }
 
 html {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     color: #fff;
 }
@@ -7120,3 +7120,32 @@ Media Query
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width:320px) {}
+
+
+.indicatorm {
+    position: relative;
+    top: -0rem;
+    left: 0.2rem;
+    /* padding: 0.2rem; */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Makes it circular */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+ /* Red indicator style */
+ .red {
+    background-color: red;
+  }
+
+  /* Green indicator style */
+  .green {
+    background-color: green;
+  }
+
+  /* Apply effects on hover for both indicators */
+  .indicatorm:hover {
+    transform: scale(1.1); /* Scale effect */
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5); /* Increased shadow */
+  }

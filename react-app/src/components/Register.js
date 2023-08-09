@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import '../index.css';
+import bgImage from "../images/bg_image.jpg"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -115,12 +116,15 @@ const Register = () => {
     <>
       {success ? (
         <section>
-          <h1>Success!</h1>
+          <h1 >Success!</h1>
           <p>
             <Link to="/login">Sign In</Link>
           </p>
         </section>
       ) : (
+        <div  style={{  width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', 
+    backgroundSize: 'cover',       
+    backgroundPosition: 'center' }}>
         <section>
           <p
             ref={errRef}
@@ -130,7 +134,7 @@ const Register = () => {
             {errMsg}
           </p>
           
-          <h1 style={{ color: '#071d6a'}}>Register</h1>
+          <h1 style={{color:"#fff"}}>Register</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username" style={{ color: '#fff'}}>
               Username:
@@ -300,6 +304,7 @@ const Register = () => {
             </span>
           </p>
         </section>
+        </div>
       )}
     </>
   );

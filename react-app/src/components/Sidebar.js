@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Sidebar = () => {
+const Sidebar = ({setTextDB}) => {
     const showTrade = () => {
         if(document.getElementById('secTable') && document.getElementById('traTable')){
+            setTextDB("Trade")
             document.getElementById('secTable').style.display = 'none';
             document.getElementById('traTable').style.display = 'block';
         }
@@ -10,6 +11,7 @@ const Sidebar = () => {
 
     const showSecurities = () => {
         if(document.getElementById('secTable') && document.getElementById('traTable')){
+            setTextDB("Security");
             document.getElementById('secTable').style.display = 'block';
             document.getElementById('traTable').style.display = 'none';
         }
@@ -29,13 +31,13 @@ const Sidebar = () => {
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                <a  class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" onClick={showTrade} data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Trade</a>
+                                <a style={{cursor: "pointer"}} class="nav-link" onClick={showTrade} data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Trade</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" onClick= {showSecurities} data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Security</a>
+                                <a style={{cursor: "pointer"}} class="nav-link" onClick= {showSecurities} data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Security</a>
                             </li>
                         </ul>
                     </div>

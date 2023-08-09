@@ -54,7 +54,7 @@ const Header = () => {
                                         <a href="#" class="list-group-item list-group-item-action active">
                                             <div class="notification-info">
                                                 <div class="notification-list-user-img"><img src={avatar2} alt="" class="user-avatar-md rounded-circle" /></div>
-                                                <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
+                                                <div class="notification-list-user-block"><span class="notification-list-user-name">NYTRADE</span>🔒 Security Alert: Important Account Update
                                                     <div class="notification-date">2 min ago</div>
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@ const Header = () => {
                                         <a href="#" class="list-group-item list-group-item-action">
                                             <div class="notification-info">
                                                 <div class="notification-list-user-img"><img src={avatar3} alt="" class="user-avatar-md rounded-circle" /></div>
-                                                <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
+                                                <div class="notification-list-user-block"><span class="notification-list-user-name">NASDAQ </span>📈 Trade Confirmation: Bond Transaction Successful
                                                     <div class="notification-date">2 days ago</div>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@ const Header = () => {
                                         <a href="#" class="list-group-item list-group-item-action">
                                             <div class="notification-info">
                                                 <div class="notification-list-user-img"><img src={avatar4} alt="" class="user-avatar-md rounded-circle" /></div>
-                                                <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
+                                                <div class="notification-list-user-block"><span class="notification-list-user-name">BSE/NSE</span> 🚨 Urgent: Security Tips for Bond Trading
                                                     <div class="notification-date">2 min ago</div>
                                                 </div>
                                             </div>
@@ -78,7 +78,7 @@ const Header = () => {
                                         <a href="#" class="list-group-item list-group-item-action">
                                             <div class="notification-info">
                                                 <div class="notification-list-user-img"><img src={avatar5} alt="" class="user-avatar-md rounded-circle" /></div>
-                                                <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
+                                                <div class="notification-list-user-block"><span class="notification-list-user-name">BULLRUN</span>🔐 Account Security Check: One-Time Verification
                                                     <div class="notification-date">2 min ago</div>
                                                 </div>
                                             </div>
@@ -127,8 +127,7 @@ const Header = () => {
                         <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src={avatar1} alt="" class="user-avatar-md rounded-circle" /></a>
                         <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                             <div class="nav-user-info">
-                                <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
-                                <span class="status"></span><span class="ml-2">Available</span>
+                                <h5 class="mb-0 text-white nav-user-name">{Cookies.get('username')} </h5>
                             </div>
                             <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                             <a class="dropdown-item" href='/register'><i class="fas fa-cog mr-2"></i>Register a User</a>

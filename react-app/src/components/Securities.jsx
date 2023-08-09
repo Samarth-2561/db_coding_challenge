@@ -95,7 +95,7 @@ export default function Securities() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchSecurites();
+      const {data} = await fetchSecurites();
       console.log(data, typeof(data)); // data not coming
       setRows(data ? data : []);
     }
@@ -156,7 +156,7 @@ export default function Securities() {
                   {row.issuer}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.maturityDate}
+                  {row.maturity_Date}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {row.coupon}
@@ -165,10 +165,10 @@ export default function Securities() {
                   {row.type}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.faceValue}
+                  {row.face_Value}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.status}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>{row.status} <div className={`indicatorm ${row.status === 'post-mature' ? 'red' : 'green'}`} /></div>
                 </TableCell>
               </TableRow>
             ))}

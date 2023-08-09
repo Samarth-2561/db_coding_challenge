@@ -78,7 +78,7 @@ const Login = () => {
       >
         {errMsg}
       </p>
-      <h1 className="blue">Sign In</h1>
+      <h1 className="blue" style={{color:"#fff"}}>Sign In</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username" style={{ color: '#fff'}}>Username:</label>
         <input

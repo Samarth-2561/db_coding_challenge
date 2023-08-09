@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Securities from './Securities';
 import Trades from './Trades';
 
-const MainContent = () => {
+const MainContent = ({textDB}) => {
+    
   return (
     <>
     <div class="dashboard-wrapper">
@@ -11,7 +12,7 @@ const MainContent = () => {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Bonds/Security Dashboard</h2>
+                                <h2 class="pageheader-title">{textDB} Dashboard</h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                             </div>
                         </div>
@@ -89,7 +90,7 @@ const MainContent = () => {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                             Copyright © 2023 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">DB Grads Team 29</a>.
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">
